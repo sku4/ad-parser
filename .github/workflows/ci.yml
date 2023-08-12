@@ -1,0 +1,15 @@
+name: ci-cd
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  ad-run:
+    uses: sku4/ad-run/.github/workflows/go.yml@master
+    secrets: inherit
+    with:
+      image: ad/parser
+      service: app-parser
+      prefix: parser
+      repository: sku4/ad-parser

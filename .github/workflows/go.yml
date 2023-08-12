@@ -1,0 +1,13 @@
+name: go-check
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  go-check:
+    uses: sku4/ad-run/.github/workflows/go-check.yml@master
+    with:
+      repository: sku4/ad-parser
