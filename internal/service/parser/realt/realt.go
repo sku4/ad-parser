@@ -28,7 +28,7 @@ func New() *Realt {
 
 const (
 	profileID    = 3
-	graphQLURL   = "https://happybot.online/ad/realt/"
+	graphQLURL   = "https://bitrixcryptopayment.tech/ad/realt/"
 	graphQLQuery = "query searchObjects($data: GetObjectsByAddressInput!) {\n  " +
 		"searchObjects(data: $data) {\n    body {\n      results {\n        location\n        " +
 		"createdAt\n        updatedAt\n        price\n        buildingYear\n        " +
