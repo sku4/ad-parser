@@ -3,17 +3,15 @@ run:
   timeout: 10m
   issues-exit-code: 1
   tests: true
-  skip-dirs:
-    - bin
 
 output:
-  format: colored-line-number
+  formats: colored-line-number
   print-issued-lines: true
   print-linter-name: true
 
 linters-settings:
   govet:
-    check-shadowing: true
+    shadow: true
   golint:
     min-confidence: 0
   dupl:
@@ -36,14 +34,14 @@ linters:
     - dogsled
     - dupl
     - errcheck
-    - exportloopref
+    - copyloopvar
     - funlen
     - goconst
     - gocritic
     - gocyclo
     - gofmt
     - goimports
-    - gomnd
+    - mnd
     - goprintffuncname
     - gosec
     - gosimple
@@ -81,8 +79,10 @@ linters:
   # - gochecknoinits
 
 issues:
+  exclude-dirs:
+    - bin
   # Excluding configuration per-path, per-linter, per-text and per-source
   exclude-rules:
     - path: _test\.go
       linters:
-        - gomnd
+        - mnd
