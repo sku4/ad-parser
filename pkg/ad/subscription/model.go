@@ -11,7 +11,7 @@ type FilterTnt struct {
 	Status int     `json:"status"`
 	Code   string  `json:"code"`
 	After  string  `json:"after"`
-	TgIds  []int64 `json:"tg_ids"`
+	TgIDs  []int64 `json:"tg_ids"`
 }
 
 type FilterTntBody struct {

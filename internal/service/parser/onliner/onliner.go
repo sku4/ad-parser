@@ -56,6 +56,7 @@ func (o *Onliner) Auth(ctx context.Context) error {
 	return nil
 }
 
+//nolint:gosec
 func (o *Onliner) SearchArticles(ctx context.Context, page *model.Page) ([]*model.Ad, error) {
 	log := logger.Get()
 
@@ -227,7 +228,7 @@ func (o *Onliner) addressSplit(address string) (street, house string) {
 }
 
 func (o *Onliner) checkHasDigit(str string) bool {
-	reg, _ := regexp.Compile(`\d+`)
+	reg := regexp.MustCompile(`\d+`)
 	numbers := reg.FindAllString(str, -1)
 
 	return len(numbers) > 0

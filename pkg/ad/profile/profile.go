@@ -5,7 +5,7 @@ import (
 )
 
 var (
-	profilesIds   map[uint16]string
+	profilesIDs   map[uint16]string
 	profilesCodes map[string]uint16
 	profiles      = []*Profile{
 		{1, "kufar"},
@@ -27,11 +27,11 @@ func GetByCode(ctx context.Context, code string) uint16 {
 }
 
 func GetByID(ctx context.Context, id uint16) string {
-	if s, ok := profilesIds[id]; ok {
+	if s, ok := profilesIDs[id]; ok {
 		return s
 	}
 	fill(ctx)
-	if s, ok := profilesIds[id]; ok {
+	if s, ok := profilesIDs[id]; ok {
 		return s
 	}
 
@@ -41,11 +41,11 @@ func GetByID(ctx context.Context, id uint16) string {
 func fill(ctx context.Context) {
 	_ = ctx
 
-	profilesIds = make(map[uint16]string, len(profiles))
+	profilesIDs = make(map[uint16]string, len(profiles))
 	profilesCodes = make(map[string]uint16, len(profiles))
 
 	for _, p := range profiles {
-		profilesIds[p.ID] = p.Code
+		profilesIDs[p.ID] = p.Code
 		profilesCodes[p.Code] = p.ID
 	}
 }

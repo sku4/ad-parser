@@ -17,11 +17,11 @@ const (
 
 func Filter(ctx context.Context, conn pool.Pooler, fields map[string]any) ([]int64, error) {
 	var after string
-	tgIds := make([]int64, 0)
+	tgIDs := make([]int64, 0)
 	for {
 		select {
 		case <-ctx.Done():
-			return tgIds, nil
+			return tgIDs, nil
 		default:
 		}
 
@@ -43,13 +43,13 @@ func Filter(ctx context.Context, conn pool.Pooler, fields map[string]any) ([]int
 		}
 
 		after = subFilterTnt.After
-		tgIds = append(tgIds, subFilterTnt.TgIds...)
+		tgIDs = append(tgIDs, subFilterTnt.TgIDs...)
 		if after == "" {
 			break
 		}
 	}
 
-	return tgIds, nil
+	return tgIDs, nil
 }
 
 func GetByTgID(ctx context.Context, conn pool.Pooler, tgID int64, limit int, after string) (*GetByTgIDTnt, error) {
