@@ -3,7 +3,7 @@ BINDIR=${CURDIR}/.bin
 GOVER=$(shell go version | perl -nle '/(go\d\S+)/; print $$1;')
 MOCKGEN=${BINDIR}/mockgen_${GOVER}
 SMARTIMPORTS=${BINDIR}/smartimports_${GOVER}
-LINTVER=v1.49.0
+LINTVER=v1.61.0
 LINTBIN=${BINDIR}/lint_${GOVER}_${LINTVER}
 
 .PHONY:
