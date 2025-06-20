@@ -63,13 +63,7 @@ volumeMounts:
   - name: config
     mountPath: /app/configs
 
-env:
-  - name: TT_INSTANCE_NAME
-    value: "master"
-  - name: TT_INSTANCE_PORT
-    value: "3301"
-  - name: TT_REPLICATION
-    value: "ad-tnt-master:3301,ad-tnt-replica:3302"
+env: {}
 
 nodeSelector: {}
 
