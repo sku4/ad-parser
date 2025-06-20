@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: registry.digitalocean.com/sku4/repository
   pullPolicy: IfNotPresent
-  tag: ""
+  tag: "parser-96a1b63"
 
 imagePullSecrets:
   - name: regcred
@@ -29,10 +29,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  create: true
-  type: ClusterIP
-  externalPort: 80
-  internalPort: 8000
+  create: false
 
 resources: {}
   # limits:
@@ -58,25 +55,13 @@ strategy:
   type: RollingUpdate
 
 volumes:
-  - name: googlekeep
-    secret:
-      secretName: googlekeep
-  - name: db
-    persistentVolumeClaim:
-      claimName: boltdb
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
+  - name: config
+    configMap:
+      name: ad-parser-config
 
 volumeMounts:
-  - name: db
-    mountPath: /root/db
-  - name: googlekeep
-    mountPath: /root/configs/googlekeep
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+  - name: config
+    mountPath: /app/configs
 
 env:
   - name: TT_INSTANCE_NAME
@@ -92,4 +77,6 @@ tolerations: []
 
 affinity: {}
 
-
+tarantoolServers:
+  - ad-tnt-master:3301
+  - ad-tnt-replica:3302

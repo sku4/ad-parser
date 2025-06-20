@@ -40,4 +40,7 @@ helm-install-local:
 		--debug
 
 helm-template:
-	helm template --name-template="ad-parser" --namespace=ad-prod -f .helm/values-local.yaml .helm > .helm/helm.txt
+	helm template --name-template="ad-parser" \
+		--namespace=ad-prod \
+		-f .helm/values-local.yaml .helm \
+		> .helm/helm.txt
