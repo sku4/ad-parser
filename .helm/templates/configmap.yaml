@@ -4,7 +4,6 @@ metadata:
   name: ad-parser-config
 data:
   config.yml: |
-    # test config map
     profiles:
       - "kufar"
       - "onliner"
