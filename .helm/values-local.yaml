@@ -74,3 +74,11 @@ affinity: {}
 tarantoolServers:
   - ad-tnt-master:3301
   - ad-tnt-replica:3302
+
+initContainers:
+  - name: init-tnt-master
+    image: busybox:1.28
+    command: [ 'sh', '-c', "until nslookup ad-tnt-master.ad-prod.svc.cluster.local; do echo waiting for tnt master; sleep 2; done" ]
+  - name: init-tnt-replica
+    image: busybox:1.28
+    command: [ 'sh', '-c', "until nslookup ad-tnt-replica.ad-prod.svc.cluster.local; do echo waiting for tnt replica; sleep 2; done" ]
