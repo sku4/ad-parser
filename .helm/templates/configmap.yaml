@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ad-parser-config
+data:
+  config.yml: |
+    profiles:
+      - "kufar"
+      - "onliner"
+      - "realt"
+    parser:
+      check_time: 20m
+      too_many_requests_limit: 5
+      download_worker_count: 10
+      clean_time: 6h
+    tarantool:
+      servers:
+        {{- toYaml $.Values.tarantoolServers | nindent 8 }}
+      timeout: 10s
+      reconnect_interval: 1s
+

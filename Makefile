@@ -26,3 +26,21 @@ install-lint: bindir
 	test -f ${LINTBIN} || \
 		(GOBIN=${BINDIR} go install github.com/golangci/golangci-lint/cmd/golangci-lint@${LINTVER} && \
 		mv ${BINDIR}/golangci-lint ${LINTBIN})
+
+helm-install:
+	helm upgrade --install "ad-parser" .helm --namespace=ad-prod
+
+helm-install-local:
+	helm upgrade --install "ad-parser" .helm \
+		--namespace=ad-prod \
+		-f ./.helm/values-local.yaml \
+		--wait \
+		--timeout 300s \
+		--atomic \
+		--debug
+
+helm-template:
+	helm template --name-template="ad-parser" \
+		--namespace=ad-prod \
+		-f .helm/values-local.yaml .helm \
+		> .helm/helm.txt

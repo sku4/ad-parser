@@ -1,0 +1,84 @@
+replicaCount: 1
+image:
+  repository: registry.digitalocean.com/sku4/repository
+  pullPolicy: IfNotPresent
+  tag: "parser-96a1b63"
+
+imagePullSecrets:
+  - name: regcred
+nameOverride: "ad-parser"
+fullnameOverride: "ad-parser"
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podLabels:
+  app: ad-parser
+
+podSecurityContext: {}
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  create: false
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+#livenessProbe:
+#  httpGet:
+#    path: /
+#    port: http
+#readinessProbe:
+#  httpGet:
+#    path: /
+#    port: http
+
+strategy:
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 1
+  type: RollingUpdate
+
+volumes:
+  - name: config
+    configMap:
+      name: ad-parser-config
+
+volumeMounts:
+  - name: config
+    mountPath: /app/configs
+
+env: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+tarantoolServers:
+  - ad-tnt-master:3301
+  - ad-tnt-replica:3302
+
+initContainers:
+  - name: init-tnt-master
+    image: busybox:1.28
+    command: [ 'sh', '-c', "until nslookup ad-tnt-master.ad-prod.svc.cluster.local; do echo waiting for tnt master; sleep 2; done" ]
+  - name: init-tnt-replica
+    image: busybox:1.28
+    command: [ 'sh', '-c', "until nslookup ad-tnt-replica.ad-prod.svc.cluster.local; do echo waiting for tnt replica; sleep 2; done" ]
