@@ -48,4 +48,4 @@ helm-template:
 helm-package:
 	helm package .helm
 	mv ad-parser*.tgz docs/helm
-	helm repo index docs/helm
+	helm repo index docs/helm --url https://raw.githubusercontent.com/sku4/ad-parser/refs/heads/master/docs/helm/
