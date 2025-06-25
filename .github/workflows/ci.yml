@@ -6,7 +6,7 @@ on:
 
 jobs:
   ad-run:
-    uses: sku4/ad-run/.github/workflows/go.yml@master
+    uses: sku4/ad-run/.github/workflows/go-k8s.yml@master
     secrets: inherit
     with:
       image: ad/parser
