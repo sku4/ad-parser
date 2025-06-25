@@ -44,3 +44,8 @@ helm-template:
 		--namespace=ad-prod \
 		-f .helm/values-local.yaml .helm \
 		> .helm/helm.txt
+
+helm-package:
+	helm package .helm
+	mv ad-parser*.tgz docs/helm
+	helm repo index docs/helm
