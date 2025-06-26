@@ -3,12 +3,12 @@ entries:
   ad-parser:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-06-25T15:13:01.074967+03:00"
+    created: "2025-06-26T12:09:14.431988+03:00"
     description: Service for parsing ads from websites
-    digest: 0e4216ff7322d9d773bdd2cff299005e8c9d461209e34ece4d9fb4f27b007b59
+    digest: 999e30744fd1a53fc2cd517103611d4b9fe43157b979c93b157862534d02d774
     name: ad-parser
     type: application
     urls:
     - https://raw.githubusercontent.com/sku4/ad-parser/refs/heads/master/docs/charts/ad-parser-1.0.0.tgz
     version: 1.0.0
-generated: "2025-06-25T15:13:01.074358+03:00"
+generated: "2025-06-26T12:09:14.431119+03:00"
